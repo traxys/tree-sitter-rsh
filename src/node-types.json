@@ -58,9 +58,43 @@
     }
   },
   {
+    "type": "cmd_ctx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cmd_chain",
+          "named": true
+        },
+        {
+          "type": "cmd_vars",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "cmd_op",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "cmd_var_stmt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "var_def",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "cmd_vars",
@@ -156,11 +190,15 @@
       "required": false,
       "types": [
         {
-          "type": "cmd_chain",
+          "type": "cmd_ctx",
           "named": true
         },
         {
-          "type": "cmd_vars",
+          "type": "cmd_var_stmt",
+          "named": true
+        },
+        {
+          "type": "comment",
           "named": true
         },
         {
@@ -248,6 +286,10 @@
   {
     "type": "cmd",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
   },
   {
     "type": "identifier",

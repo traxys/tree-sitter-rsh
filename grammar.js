@@ -15,6 +15,7 @@ module.exports = grammar({
 	_statement_line: $ => seq($._statement, repeat('\n')),
 
 	_statement: $ => choice(
+		$.comment,
 		$.let_statement,
 		$._cmd_blk,
 	),
@@ -65,8 +66,8 @@ module.exports = grammar({
 	),
 
 	_cmd_in_blk: $ => seq(
-		repeat(seq($._cmd_ctx, '\n')), 
-		$._cmd_ctx,
+		repeat(seq($._cmd_stmt, '\n')), 
+		$._cmd_stmt,
 		optional('\n'),
 	), 
 
@@ -77,7 +78,18 @@ module.exports = grammar({
 		'in',
 	),
 
-	_cmd_ctx: $ => seq(optional($.cmd_vars), $._cmd_list),
+	cmd_var_stmt: $ => seq(
+		'let', 
+		repeat(seq($.var_def, ',')), 
+		$.var_def,
+	),
+
+	_cmd_stmt: $ => choice(
+		$.cmd_var_stmt,
+		$.cmd_ctx
+	),
+
+	cmd_ctx: $ => seq(optional($.cmd_vars), $._cmd_list),
 
 	_cmd_list: $ => seq(repeat(seq($.cmd_chain, ';')), $.cmd_chain),
 

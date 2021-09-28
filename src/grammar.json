@@ -45,6 +45,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
           "name": "let_statement"
         },
         {
@@ -220,7 +224,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_cmd_ctx"
+                "name": "_cmd_stmt"
               },
               {
                 "type": "STRING",
@@ -231,7 +235,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_cmd_ctx"
+          "name": "_cmd_stmt"
         },
         {
           "type": "CHOICE",
@@ -288,7 +292,49 @@
         }
       ]
     },
-    "_cmd_ctx": {
+    "cmd_var_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "let"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "var_def"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "var_def"
+        }
+      ]
+    },
+    "_cmd_stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "cmd_var_stmt"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "cmd_ctx"
+        }
+      ]
+    },
+    "cmd_ctx": {
       "type": "SEQ",
       "members": [
         {
@@ -508,7 +554,7 @@
     },
     "word": {
       "type": "PATTERN",
-      "value": "[\\w\\d:+\\-_/.$]+"
+      "value": "[\\w\\d:+\\-_\\/.$]+"
     }
   },
   "extras": [
