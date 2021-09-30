@@ -110,7 +110,9 @@ module.exports = grammar({
 
 	pipeline: $ => seq(repeat(seq($.cmd, '|')), $.cmd),
 
-	cmd: $ => seq($._expr, repeat($._expr), repeat($.redir)),
+	cmd: $ => seq($.cmd_name, repeat($._expr), repeat($.redir)),
+
+	cmd_name: $ => $._expr,
 
 	redir_kind: $ => choice(">", "<", ">>"),
 

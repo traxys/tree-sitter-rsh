@@ -5,8 +5,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "cmd_name",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -71,6 +75,37 @@
         },
         {
           "type": "cmd_vars",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cmd_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "istr",
+          "named": true
+        },
+        {
+          "type": "str",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         }
       ]

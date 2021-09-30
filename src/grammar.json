@@ -475,7 +475,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_expr"
+          "name": "cmd_name"
         },
         {
           "type": "REPEAT",
@@ -492,6 +492,10 @@
           }
         }
       ]
+    },
+    "cmd_name": {
+      "type": "SYMBOL",
+      "name": "_expr"
     },
     "redir_kind": {
       "type": "CHOICE",
