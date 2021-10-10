@@ -25,5 +25,5 @@
 (istr) @string
 (str) @string
 (int) @constant.builtin
-(capture (identifier) @local.reference)
+(capture (identifier) @local.definition)
 (var_def (identifier) @local.definition)
