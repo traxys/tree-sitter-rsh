@@ -18,6 +18,7 @@ module.exports = grammar({
 		$.comment,
 		$.let_statement,
 		$._cmd_blk,
+		seq($._strong_expr, ";"),
 	),
 
 	let_statement: $ => seq(
@@ -35,7 +36,34 @@ module.exports = grammar({
 	_strong_expr: $ => choice(
 		$.istr,
 		$._value,
-		$.identifier
+		$.identifier_value,
+		$.call,
+	),
+
+	identifier_value: $ => $.identifier,
+
+	call: $ => seq(
+		$._callee,
+		$.args,
+	),
+
+	args: $ => seq(
+		"(",
+		repeat(seq($._strong_expr, ",")),
+		optional($._strong_expr),
+		")",
+	),
+
+	method: $ => seq(
+		$._strong_expr,
+		"=>",
+		$.identifier,
+		$.args,
+	),
+
+	_callee: $ => choice(
+		$.identifier,
+		seq("(", $._strong_expr, ")"),
 	),
 
 	_expr: $ => choice(
