@@ -1,5 +1,20 @@
 [
   {
+    "type": "capture",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "cmd",
     "named": true,
     "fields": {},
@@ -225,6 +240,10 @@
       "required": false,
       "types": [
         {
+          "type": "capture",
+          "named": true
+        },
+        {
           "type": "cmd_ctx",
           "named": true
         },
@@ -316,6 +335,10 @@
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "capture",
     "named": false
   },
   {

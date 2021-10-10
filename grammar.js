@@ -7,7 +7,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    // TODO: add the actual grammar rules
+    // TODO: rshcmd injection
     source_file: $ => seq(repeat('\n'), repeat($._statement_line)),
 
     comment: $ => /#[^\n]*\n/,
@@ -55,7 +55,10 @@ module.exports = grammar({
 		),
 	),
 
+	capture: $ => seq("capture", "(", $.identifier, ")"),
+
 	_cmd_blk: $ => seq(
+		optional($.capture),
 		'cmd', 
 		repeat('\n'), 
 		'{', 
